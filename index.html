@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NUBIAN SOUL — Tshirts</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f5f1;color:#171717}
+a{text-decoration:none;color:inherit}.top{background:#111;color:#fff;text-align:center;padding:8px;font-size:13px}
+header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #eee}.nav{max-width:1200px;margin:auto;padding:18px 22px;display:flex;align-items:center;gap:24px}.logo{font-size:24px;font-weight:900;letter-spacing:2px;margin-left:auto}.navlinks{display:flex;gap:20px}.nav button,.btn{border:0;border-radius:10px;padding:12px 18px;cursor:pointer}.cart{background:#111;color:#fff}
+.hero{max-width:1200px;margin:24px auto;padding:70px 35px;border-radius:22px;background:linear-gradient(120deg,#181818,#4b4439);color:white;min-height:410px;display:flex;align-items:center}.hero h1{font-size:56px;margin:0 0 15px}.hero p{font-size:20px;max-width:550px;line-height:1.8}.hero .btn{background:white;color:#111;font-weight:bold}
+.wrap{max-width:1200px;margin:auto;padding:35px 22px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.filters{display:flex;gap:10px;flex-wrap:wrap}.filters button{background:white;border:1px solid #ddd;border-radius:20px;padding:9px 15px;cursor:pointer}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #eee}.photo{height:290px;background:#e7e2da;display:flex;align-items:center;justify-content:center;color:#777;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.info{padding:16px}.price{font-weight:bold;font-size:18px}.old{text-decoration:line-through;color:#999;font-size:14px;margin-left:8px}.add{width:100%;background:#111;color:white;margin-top:12px}
+footer{background:#111;color:white;padding:45px 22px;margin-top:40px}.footerin{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.box{background:#fff;border-radius:18px;max-width:700px;width:100%;max-height:90vh;overflow:auto;padding:24px}.close{float:left;background:none;border:0;font-size:24px;cursor:pointer}.productdetail{display:grid;grid-template-columns:1fr 1fr;gap:25px}.detailimg{height:430px;background:#eee;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}.detailimg img{width:100%;height:100%;object-fit:cover}.sizes,.colors{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.choice{border:1px solid #ccc;background:#fff;border-radius:8px;padding:9px 13px;cursor:pointer}.choice.selected{background:#111;color:#fff}.qty{display:flex;align-items:center;gap:10px;margin:15px 0}.qty button{width:34px;height:34px}.cartitem{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:12px 0}.checkout input,.checkout textarea,.checkout select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:6px 0 12px}.admin{background:#fff}.admin table{width:100%;border-collapse:collapse}.admin td,.admin th{padding:10px;border-bottom:1px solid #eee;text-align:right}.admin input,.admin textarea{padding:10px;border:1px solid #ddd;border-radius:7px}.danger{background:#b42318;color:#fff}.success{background:#137333;color:#fff}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.hero h1{font-size:38px}.productdetail{grid-template-columns:1fr}}
+@media(max-width:520px){.products{grid-template-columns:1fr}.hero{min-height:350px}.photo{height:330px}}
+</style>
+</head>
+<body>
+<div class="top">شحن سريع داخل مصر • تواصل WhatsApp: 01018801708</div>
+<header><div class="nav">
+<div class="logo">NUBIAN SOUL</div>
+<nav class="navlinks"><a href="#home">الرئيسية</a><a href="#products">التيشيرتات</a><a href="#about">من نحن</a></nav>
+<button class="btn cart" onclick="openCart()">السلة (<span id="cartCount">0</span>)</button>
+</div></header>
+
+<main id="home">
+<section class="hero"><div>
+<h1>WEAR YOUR SOUL</h1>
+<p>تيشيرتات بتصميمات تحمل الهوية والروح النوبية بروح عصرية. اكتشف مجموعتك القادمة.</p>
+<a class="btn" href="#products">اكتشف المجموعة</a>
+</div></section>
+
+<section class="wrap" id="products">
+<div class="sectionhead"><h2>أحدث التصميمات</h2><div class="filters" id="filters"></div></div>
+<div class="products" id="productsGrid"></div>
+</section>
+</main>
+
+<footer id="about"><div class="footerin">
+<div><h2>NUBIAN SOUL</h2><p>Premium Tshirts inspired by identity and soul.</p></div>
+<div><b>تواصل معنا</b><p>WhatsApp: 01018801708<br>Email: nubiansoultshirts@gmail.com</p></div>
+<div><b>الدفع</b><p>Vodafone Cash / الدفع عند الاستلام</p></div>
+</div>
+<div style="max-width:1200px;margin:20px auto 0;text-align:center;opacity:.6"><a href="#" onclick="openAdmin();return false" style="color:#fff;font-size:12px">لوحة الإدارة</a></div>
+</footer>
+
+<div class="modal" id="productModal"><div class="box"><button class="close" onclick="closeModal('productModal')">×</button><div id="productDetail"></div></div></div>
+<div class="modal" id="cartModal"><div class="box"><button class="close" onclick="closeModal('cartModal')">×</button><h2>سلة المشتريات</h2><div id="cartItems"></div><hr><h3>الإجمالي: <span id="cartTotal">0</span> EGP</h3><button class="btn cart" onclick="openCheckout()">إتمام الطلب</button></div></div>
+<div class="modal" id="checkoutModal"><div class="box checkout"><button class="close" onclick="closeModal('checkoutModal')">×</button><h2>إتمام الطلب</h2>
+<label>الاسم</label><input id="cName"><label>رقم الهاتف</label><input id="cPhone"><label>المحافظة / المدينة</label><input id="cCity"><label>العنوان بالتفصيل</label><textarea id="cAddress"></textarea><label>ملاحظات</label><textarea id="cNotes"></textarea>
+<label>طريقة الدفع</label><select id="cPayment"><option value="vodafone_cash">Vodafone Cash</option><option value="cod">الدفع عند الاستلام</option></select>
+<button class="btn cart" onclick="placeOrder()">تأكيد الطلب</button><p id="orderMsg"></p>
+</div></div>
+
+<!-- لوحة إدارة مصغرة داخل نفس الملف. الوصول للـ API محمي بتوكن أدمن (Authorization: Bearer). -->
+<div class="modal" id="adminModal"><div class="box admin"><button class="close" onclick="closeModal('adminModal')">×</button>
+<div id="adminLogin"><h2>دخول لوحة الإدارة</h2>
+<label>كلمة المرور</label><input id="aPassword" type="password" placeholder="كلمة مرور الأدمن" onkeydown="if(event.key==='Enter')adminLogin()">
+<button class="btn cart" onclick="adminLogin()">دخول</button><p id="loginMsg" style="color:#b42318"></p></div>
+<div id="adminContent" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2>لوحة إدارة NUBIAN SOUL</h2><button onclick="adminLogout()">تسجيل خروج</button></div>
+<p>هذه الواجهة تتصل بالـ API الموجود على نفس Cloudflare Worker.</p>
+<h3>إضافة منتج</h3>
+<input id="aName" placeholder="اسم المنتج"><input id="aPrice" type="number" placeholder="السعر"><input id="aOld" type="number" placeholder="السعر قبل الخصم"><input id="aCat" placeholder="التصنيف" value="T-Shirts"><br>
+<textarea id="aDesc" placeholder="الوصف" style="width:100%;height:80px"></textarea><br>
+<label>صورة المنتج: <input id="aImage" type="file" accept="image/*"></label><br><br>
+<label>الألوان (افصل بفاصلة): <input id="aColors" value="Black,White"></label><br>
+<label>المقاسات (افصل بفاصلة): <input id="aSizes" value="S,M,L,XL,XXL"></label><br>
+<label>المخزون لكل Variant: <input id="aStock" type="number" value="10"></label><br>
+<label><input id="aFeatured" type="checkbox"> منتج مميز</label>
+<button class="btn cart" onclick="adminAddProduct()">حفظ المنتج</button>
+<h3>المنتجات</h3><div id="adminProducts"></div>
+<h3>الطلبات</h3><div id="adminOrders"></div>
+</div>
+</div></div>
+
+<script>
+const API="/api";
+let products=[],cart=[],activeProduct=null,selectedSize=null,selectedColor=null,qty=1;
+let adminToken=sessionStorage.getItem("ns_admin_token")||null;
+
+async function api(path,opts){const r=await fetch(API+path,opts);const data=await r.json();if(!r.ok)throw Error(data.error||"API error");return data}
+function authHeaders(extra){return{...(extra||{}),Authorization:"Bearer "+adminToken}}
+function openAdmin(){
+ adminModal.classList.add("show");
+ if(adminToken){adminLogin.style.display="none";adminContent.style.display="block";loadAdmin()}
+ else{adminLogin.style.display="block";adminContent.style.display="none"}
+}
+async function adminLogin(){
+ loginMsg.textContent="";
+ try{
+  await api("/admin/login",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({password:aPassword.value})});
+  adminToken=aPassword.value;sessionStorage.setItem("ns_admin_token",adminToken);aPassword.value="";
+  adminLogin.style.display="none";adminContent.style.display="block";loadAdmin();
+ }catch(e){loginMsg.textContent=e.message}
+}
+function adminLogout(){adminToken=null;sessionStorage.removeItem("ns_admin_token");closeModal("adminModal")}
+async function load(){
+ try{products=await api("/products")}catch(e){products=[]}
+ renderFilters();renderProducts();renderCartCount();
+}
+function renderFilters(){
+ const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
+ filters.innerHTML='<button onclick="filterProducts()">الكل</button>'+cats.map(c=>`<button onclick="filterProducts('${esc(c)}')">${esc(c)}</button>`).join("");
+}
+function filterProducts(cat){renderProducts(cat)}
+function renderProducts(cat){
+ const list=cat?products.filter(p=>p.category===cat):products;
+ productsGrid.innerHTML=list.length?list.map(p=>`
+ <article class="product">
+ <div class="photo">${p.image_url?`<img src="${esc(p.image_url)}" alt="${esc(p.name)}">`:"صورة المنتج"}</div>
+ <div class="info"><h3>${esc(p.name)}</h3><p>${esc(p.description||"")}</p>
+ <div><span class="price">${p.price} EGP</span>${p.compare_price?`<span class="old">${p.compare_price} EGP</span>`:""}</div>
+ <button class="btn add" onclick="openProduct(${p.id})">عرض المنتج</button></div></article>`).join(""):"<p>لا توجد منتجات حاليًا.</p>";
+}
+function openProduct(id){
+ activeProduct=products.find(p=>p.id===id);selectedSize=null;selectedColor=null;qty=1;
+ productDetail.innerHTML=`<div class="productdetail"><div class="detailimg">${activeProduct.image_url?`<img src="${esc(activeProduct.image_url)}">`:"صورة المنتج"}</div><div>
+ <h2>${esc(activeProduct.name)}</h2><h3>${activeProduct.price} EGP</h3><p>${esc(activeProduct.description||"")}</p>
+ <b>اللون</b><div class="colors">${(activeProduct.colors||"Black,White").split(",").map(x=>x.trim()).filter(Boolean).map(x=>`<button class="choice" onclick="selectColor(this,'${esc(x)}')">${esc(x)}</button>`).join("")}</div>
+ <b>المقاس</b><div class="sizes">${(activeProduct.sizes||"S,M,L,XL,XXL").split(",").map(x=>x.trim()).filter(Boolean).map(x=>`<button class="choice" onclick="selectSize(this,'${esc(x)}')">${esc(x)}</button>`).join("")}</div>
+ <div class="qty"><button onclick="qty=Math.max(1,qty-1)">−</button><b id="qtyText">1</b><button onclick="qty++;qtyText.textContent=qty">+</button></div>
+ <button class="btn cart" onclick="addToCart()">أضف إلى السلة</button></div></div>`;
+ document.getElementById("productModal").classList.add("show");
+}
+function selectColor(el,x){document.querySelectorAll(".colors .choice").forEach(b=>b.classList.remove("selected"));el.classList.add("selected");selectedColor=x}
+function selectSize(el,x){document.querySelectorAll(".sizes .choice").forEach(b=>b.classList.remove("selected"));el.classList.add("selected");selectedSize=x}
+function addToCart(){if(!selectedSize||!selectedColor)return alert("اختر اللون والمقاس أولاً");cart.push({product_id:activeProduct.id,name:activeProduct.name,price:activeProduct.price,size:selectedSize,color:selectedColor,quantity:qty});renderCartCount();closeModal("productModal");openCart()}
+function renderCartCount(){cartCount.textContent=cart.reduce((s,x)=>s+x.quantity,0)}
+function openCart(){renderCart();cartModal.classList.add("show")}
+function renderCart(){cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cartitem"><div><b>${esc(x.name)}</b><br>${esc(x.color)} / ${esc(x.size)} × ${x.quantity}</div><div>${x.price*x.quantity} EGP <button onclick="cart.splice(${i},1);renderCart();renderCartCount()">×</button></div></div>`).join(""):"السلة فارغة";cartTotal.textContent=cart.reduce((s,x)=>s+x.price*x.quantity,0)}
+function openCheckout(){if(!cart.length)return alert("السلة فارغة");closeModal("cartModal");checkoutModal.classList.add("show")}
+async function placeOrder(){
+ const payload={customer_name:cName.value,phone:cPhone.value,city:cCity.value,address:cAddress.value,notes:cNotes.value,payment_method:cPayment.value,shipping:60,items:cart.map(x=>({product_id:x.product_id,price:x.price,quantity:x.quantity}))};
+ try{const r=await api("/orders",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)});orderMsg.textContent=`تم إنشاء الطلب #${r.order_id} بإجمالي ${r.total} EGP. سيتم استكمال الدفع/التواصل.`;cart=[];renderCartCount()}catch(e){orderMsg.textContent=e.message}
+}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+// Admin API: upload image -> /api/uploads, create product -> /api/products, create variants -> /api/variants
+async function adminAddProduct(){
+ try{
+  let image_url="";
+  const f=aImage.files[0];
+  if(f){const fd=new FormData();fd.append("image",f);const up=await fetch(API+"/uploads",{method:"POST",headers:authHeaders(),body:fd});const d=await up.json();if(!up.ok)throw Error(d.error);image_url=d.url}
+  const p=await api("/products",{method:"POST",headers:authHeaders({"content-type":"application/json"}),body:JSON.stringify({name:aName.value,price:aPrice.value,compare_price:aOld.value,category:aCat.value,description:aDesc.value,featured:aFeatured.checked,image_url})});
+  const colors=aColors.value.split(",").map(x=>x.trim()).filter(Boolean),sizes=aSizes.value.split(",").map(x=>x.trim()).filter(Boolean);
+  for(const color of colors)for(const size of sizes)await api("/variants",{method:"POST",headers:authHeaders({"content-type":"application/json"}),body:JSON.stringify({product_id:p.id,color,size,stock:Number(aStock.value||0)})});
+  alert("تم حفظ المنتج والـ Variants");await load();loadAdmin()
+ }catch(e){alert(e.message)}
+}
+async function loadAdmin(){
+ try{
+  const p=await api("/products");adminProducts.innerHTML="<table><tr><th>المنتج</th><th>السعر</th><th>إجراء</th></tr>"+p.map(x=>`<tr><td>${esc(x.name)}</td><td>${x.price}</td><td><button class="danger" onclick="deleteProduct(${x.id})">حذف</button></td></tr>`).join("")+"</table>";
+  const o=await api("/orders",{headers:authHeaders()});adminOrders.innerHTML="<table><tr><th>#</th><th>العميل</th><th>الإجمالي</th><th>الدفع</th><th>الحالة</th></tr>"+o.map(x=>`<tr><td>${x.id}</td><td>${esc(x.customer_name)}</td><td>${x.total}</td><td>${x.payment_method}</td><td>${x.order_status}</td></tr>`).join("")+"</table>"
+ }catch(e){
+  if(String(e.message).includes("مصرح")){adminLogout();adminLogin.style.display="block";adminContent.style.display="none";loginMsg.textContent="انتهت الجلسة، سجل دخول تاني."}
+  else adminProducts.textContent=e.message
+ }
+}
+async function deleteProduct(id){if(confirm("حذف المنتج؟")){await api("/products/"+id,{method:"DELETE",headers:authHeaders()});load();loadAdmin()}}
+load();
+</script>
+</body>
+</html>
